@@ -7,6 +7,183 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Techerly Dashboard - SIMKP
+
+Sistem Informasi Kerja Praktek (SIMKP) dengan dashboard modern menggunakan Laravel 11 dan React dengan Tailwind CSS.
+
+## 📋 Quick Start Guide
+
+### Prerequisites
+
+Sebelum memulai, pastikan sudah terinstall:
+- **PHP** 8.2 atau lebih tinggi
+- **Node.js** 18.0 atau lebih tinggi (gunakan npm atau yarn)
+- **Composer** (untuk PHP dependency management)
+- **Git**
+- **MySQL** atau database lainnya (opsional, project ini bisa berjalan dengan SQLite)
+
+### 🚀 Installation Steps
+
+#### 1. Clone Repository
+```bash
+git clone <repository-url>
+cd belajar-monolith
+```
+
+#### 2. Install PHP Dependencies
+```bash
+composer install
+```
+
+#### 3. Setup Environment File
+```bash
+cp .env.example .env
+```
+
+Kemudian edit `.env` dan sesuaikan konfigurasi database jika diperlukan:
+```env
+DB_CONNECTION=sqlite
+# atau gunakan MySQL:
+# DB_CONNECTION=mysql
+# DB_HOST=127.0.0.1
+# DB_PORT=3306
+# DB_DATABASE=belajar_monolith
+# DB_USERNAME=root
+# DB_PASSWORD=
+```
+
+#### 4. Generate Application Key
+```bash
+php artisan key:generate
+```
+
+#### 5. Run Database Migrations (Opsional)
+```bash
+php artisan migrate
+```
+
+#### 6. Install JavaScript Dependencies
+```bash
+npm install
+```
+
+### 🎯 Running Development Server
+
+#### Terminal 1: Backend (Laravel Server)
+```bash
+php artisan serve
+```
+Server akan berjalan di `http://localhost:8000`
+
+#### Terminal 2: Frontend (Vite Dev Server)
+```bash
+npm run dev
+```
+Vite akan berjalan di `http://localhost:5173`
+
+Buka browser dan akses: **`http://localhost:8000`**
+
+### 📦 Building untuk Production
+
+#### Build Frontend Assets
+```bash
+npm run build
+```
+
+Assets akan di-generate di folder `public/build/`
+
+#### Run Production Server (Opsional)
+```bash
+php artisan serve --env=production --port=8000
+```
+
+### 📂 Project Structure
+
+```
+belajar-monolith/
+├── app/                           # Laravel application logic
+│   ├── Http/Controllers/         # API & Web Controllers
+│   ├── Models/                   # Database Models
+│   └── Providers/                # Service Providers
+├── resources/
+│   ├── css/                      # Tailwind CSS
+│   ├── js/                       # React & JavaScript
+│   │   ├── app.jsx              # React entry point
+│   │   └── src/
+│   │       ├── App.jsx          # React Router & Layout
+│   │       ├── components/      # Reusable React Components
+│   │       │   └── layouts/     # Layout Components
+│   │       └── pages/           # Page Components
+│   └── views/
+│       └── index.blade.php      # Main Blade template
+├── routes/
+│   ├── web.php                  # Web routes
+│   └── api.php                  # API routes
+├── database/
+│   ├── migrations/              # Database migrations
+│   ├── factories/               # Model factories
+│   └── seeders/                 # Database seeders
+├── public/
+│   └── build/                   # Vite compiled assets (auto-generated)
+├── .env                         # Environment configuration
+├── composer.json                # PHP dependencies
+├── package.json                 # JavaScript dependencies
+├── vite.config.js              # Vite configuration
+└── tailwind.config.js          # Tailwind CSS configuration
+```
+
+### 🎨 Design Features
+
+- **Modern Responsive Dashboard** dengan Tailwind CSS
+- **Collapsible Sidebar** untuk desktop & drawer untuk mobile
+- **Student Management Interface**
+- **Assignment Tracking**
+- **Analytics & Statistics**
+- **Font Awesome Icons**
+- **Plus Jakarta Sans Typography**
+
+### 🔧 Useful Commands
+
+```bash
+# Create new controller
+php artisan make:controller ControllerName
+
+# Create new model
+php artisan make:model ModelName -m
+
+# Run migrations
+php artisan migrate
+
+# Rollback migrations
+php artisan migrate:rollback
+
+# Fresh migrations & seeding
+php artisan migrate:fresh --seed
+
+# Lint & format PHP code
+./vendor/bin/pint
+
+# Run tests
+php artisan test
+```
+
+### 📚 Documentation
+
+- [Laravel Documentation](https://laravel.com/docs)
+- [React Documentation](https://react.dev)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [Vite Documentation](https://vitejs.dev/guide/)
+
+### 🤝 Contributing
+
+Pull requests welcome! Pastikan kode sudah terformat dan tested sebelum submit.
+
+### 📄 License
+
+Project ini menggunakan [MIT license](https://opensource.org/licenses/MIT).
+
+---
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
