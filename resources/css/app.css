@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans:
+        "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
+}
+
+body {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    background-color: #f1f3f7;
+}
+
+/* Transition untuk Sidebar */
+#sidebar {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Desktop Collapsed State */
+.sidebar-collapsed {
+    width: 90px !important;
+}
+.sidebar-collapsed .nav-text,
+.sidebar-collapsed .nav-badge,
+.sidebar-collapsed .section-title,
+.sidebar-collapsed .logo-text,
+.sidebar-collapsed .user-info {
+    display: none;
+}
+.sidebar-collapsed .nav-item {
+    justify-content: center;
+    padding: 0.75rem 0;
+}
+
+/* Mobile Responsive Logic */
+@media (max-width: 1024px) {
+    #sidebar {
+        position: fixed;
+        left: -100%;
+        z-index: 50;
+        height: 100vh;
+        background: #f1f3f7;
+        width: 280px !important;
+        padding-top: 20px;
+    }
+    #sidebar.mobile-active {
+        left: 0;
+    }
+    .main-content-card {
+        border-radius: 0 !important;
+    } /* Radius 0 di Mobile */
+    .content-overlay {
+        display: none;
+    }
+    .content-overlay.active {
+        display: block;
+    }
+}
+
+/* Container Utama di Desktop */
+@media (min-width: 1025px) {
+    .main-content-card {
+        border-radius: 40px;
+        box-shadow: 0 4px 25px rgba(0, 0, 0, 0.04);
+    }
+}
+
+.main-content-card {
+    background: white;
+}
+.nav-item-active {
+    background-color: white;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+    border-radius: 14px;
+    color: black !important;
+}
+
+.custom-scroll::-webkit-scrollbar {
+    width: 4px;
+}
+.custom-scroll::-webkit-scrollbar-thumb {
+    background: #e5e7eb;
+    border-radius: 10px;
+}
