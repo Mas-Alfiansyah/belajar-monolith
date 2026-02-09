@@ -26,7 +26,7 @@ Sebelum memulai, pastikan sudah terinstall:
 
 #### 1. Clone Repository
 ```bash
-git clone <repository-url>
+git clone https://github.com/Mas-Alfiansyah/belajar-monolith.git
 cd belajar-monolith
 ```
 
