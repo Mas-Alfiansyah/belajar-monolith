@@ -88,3 +88,65 @@ body {
     background: #e5e7eb;
     border-radius: 10px;
 }
+
+/* --- Custom React Toastify: Solid Color Modern --- */
+
+/* Mengatur warna dasar untuk tema berwarna */
+:root {
+  --toastify-color-success: #10b981; /* Hijau Emerald */
+  --toastify-color-error: #f43f5e;   /* Merah Rose */
+  --toastify-font-family: 'Inter', sans-serif;
+}
+
+/* Container Utama */
+.Toastify__toast-container {
+  width: 350px !important;
+}
+
+/* Styling Umum untuk Box Toast */
+.Toastify__toast {
+  border-radius: 18px !important;
+  padding: 12px 20px !important;
+  box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1) !important;
+  border: none !important;
+  color: white !important; /* Semua teks jadi putih agar kontras */
+}
+
+/* Background KHUSUS Sukses */
+.Toastify__toast--success {
+  background: var(--toastify-color-success) !important;
+}
+
+/* Background KHUSUS Error */
+.Toastify__toast--error {
+  background: var(--toastify-color-error) !important;
+}
+
+/* Styling Teks di dalam */
+.Toastify__toast-body {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: white !important;
+  margin: 0 !important;
+}
+
+/* Icon Toast menjadi Putih */
+.Toastify__toast-icon svg {
+  fill: white !important;
+}
+
+/* Tombol Close (X) menjadi Putih */
+.Toastify__close-button {
+  color: white !important;
+  opacity: 0.8 !important;
+}
+
+.Toastify__close-button:hover {
+  opacity: 1;
+}
+
+/* Progress Bar: Kita buat putih transparan agar estetik di atas warna solid */
+.Toastify__progress-bar {
+  background: rgba(255, 255, 255, 0.4) !important;
+  height: 4px !important;
+}

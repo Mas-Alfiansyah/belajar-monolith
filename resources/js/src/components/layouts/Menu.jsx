@@ -1,8 +1,18 @@
 import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Menu = ({ children }) => {
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [isMobileOpen, setIsMobileOpen] = useState(false);
+
+    const location = useLocation();
+
+    const menuItems = [
+        { path: '/dashboard', label: 'Dashboard', icon: 'fa-house-chimney' },
+        { path: '/students', label: 'Students', icon: 'fa-users' },
+        { path: '/majors', label: 'Majors', icon: 'fa-graduation-cap' },
+        { path: '/messages', label: 'Messages', icon: 'fa-comment-dots', badge: '2' },
+    ];
 
     const toggleSidebar = () => {
         if (window.innerWidth >= 1024) {
@@ -15,15 +25,14 @@ const Menu = ({ children }) => {
     return (
         <div className="flex h-screen overflow-hidden lg:p-3 p-0 bg-[#F1F3F7]">
             {/* Overlay Mobile */}
-            <div 
-                className={`fixed inset-0 bg-black/20 backdrop-blur-sm z-40 lg:hidden transition-all ${
-                    isMobileOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
-                }`}
+            <div
+                className={`fixed inset-0 bg-black/20 backdrop-blur-sm z-40 lg:hidden transition-all ${isMobileOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+                    }`}
                 onClick={() => setIsMobileOpen(false)}
             ></div>
 
             {/* SIDEBAR */}
-            <aside 
+            <aside
                 className={`flex flex-col py-6 px-4 shrink-0 transition-all duration-300 ease-in-out
                     ${isCollapsed ? 'lg:w-[90px]' : 'lg:w-[260px]'} 
                     ${isMobileOpen ? 'fixed left-0 z-50 h-screen bg-[#F1F3F7] w-[280px]' : 'fixed -left-full lg:static lg:left-0'}
@@ -39,9 +48,20 @@ const Menu = ({ children }) => {
                         Main Menu
                     </p>
                     <nav className="space-y-1">
-                        <MenuItem icon="fa-house-chimney" label="Overview" isCollapsed={isCollapsed} active />
-                        <MenuItem icon="fa-users" label="Students" isCollapsed={isCollapsed} />
-                        <MenuItem icon="fa-comment-dots" label="Messages" isCollapsed={isCollapsed} badge="2" />
+                        {menuItems.map((item, index) => {
+                            const isActive = location.pathname === item.path || location.pathname.startsWith(item.path + '/');
+                            return (
+                                <MenuItem
+                                    key={index}
+                                    path={item.path}
+                                    icon={item.icon}
+                                    label={item.label}
+                                    badge={item.badge}
+                                    active={isActive}
+                                    isCollapsed={isCollapsed}
+                                />
+                            );
+                        })}
                     </nav>
                 </div>
 
@@ -57,13 +77,13 @@ const Menu = ({ children }) => {
             </aside>
 
             {/* MAIN AREA */}
-            <main className="flex-1 flex flex-col overflow-hidden transition-all duration-300 bg-white rounded-none lg:rounded-[40px_40px_0_0] shadow-sm relative">
-                
+            <main className="flex-1 flex flex-col overflow-hidden transition-all duration-300 bg-white rounded-none lg:rounded-[20px_20px_0_0] shadow-sm relative">
+
                 {/* Header (Pindahan dari Dashboard ke Layout agar Toggle Berfungsi) */}
                 <header className="lg:px-10 px-6 py-8 flex justify-between items-center shrink-0">
                     <div className="flex items-center gap-4">
-                        <button 
-                            onClick={toggleSidebar} 
+                        <button
+                            onClick={toggleSidebar}
                             className="w-10 h-10 flex items-center justify-center bg-gray-50 rounded-xl text-black hover:bg-gray-200 transition-all"
                         >
                             <i className="fa-solid fa-bars-staggered"></i>
@@ -91,12 +111,14 @@ const Menu = ({ children }) => {
     );
 };
 
-const MenuItem = ({ icon, label, isCollapsed, badge, active }) => (
-    <a href="#" className={`flex items-center gap-3 px-4 py-3 transition-all ${active ? 'bg-white shadow-sm rounded-xl text-black' : 'text-gray-400 hover:text-black'} ${isCollapsed ? 'justify-center px-0' : ''}`}>
-        <i className={`fa-solid ${icon} text-lg`}></i>
-        {!isCollapsed && <span className="text-[13px] font-bold flex-1">{label}</span>}
-        {!isCollapsed && badge && <span className="bg-black text-white text-[10px] w-5 h-5 flex items-center justify-center rounded-full">{badge}</span>}
-    </a>
+const MenuItem = ({ path, icon, label, isCollapsed, badge, active }) => (
+    <>
+        <Link to={path} className={`flex items-center gap-3 px-4 py-3 transition-all ${active ? 'bg-white shadow-sm rounded-xl text-black' : 'text-gray-400 hover:text-black'} ${isCollapsed ? 'justify-center px-0' : ''}`}>
+            <i className={`fa-solid ${icon} text-lg`}></i>
+            {!isCollapsed && <span className="text-[13px] font-bold flex-1">{label}</span>}
+            {/* {!isCollapsed && badge && <span className="bg-black text-white text-[10px] w-5 h-5 flex items-center justify-center rounded-full">{badge}</span>} */}
+        </Link>
+    </>
 );
 
 export default Menu;
