@@ -9,14 +9,21 @@ const AddMajor = ({ onClose, onSave }) => {
     const [status, setStatus] = useState('active');
     const [loading, setLoading] = useState(false);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        onSave({
-            major_name: name,
-            major_code: code,
-            description: description,
-            status: status
-        });
+        setLoading(true);
+        try {
+            await onSave({
+                major_name: name,
+                major_code: code,
+                description: description,
+                status: status
+            });
+        } catch (error) {
+            console.error('Terjadi kesalahan saat menyimpan data jurusan:', error);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (

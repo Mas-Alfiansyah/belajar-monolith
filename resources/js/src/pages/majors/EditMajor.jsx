@@ -19,18 +19,23 @@ const EditMajor = ({ major, onClose, onSave }) => {
     }, [major]);
 
     // Di dalam EditMajor.jsx
-const handleSubmit = async (e) => {
-    e.preventDefault();
-    const payload = { 
-        major_name: name, 
-        major_code: code, 
-        description: description, 
-        status: status 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        const payload = {
+            major_name: name,
+            major_code: code,
+            description: description,
+            status: status
+        };
+        try {
+            await onSave(payload);
+        } catch (error) {
+            console.error("Gagal mengupdate:", error);
+        } finally {
+            setLoading(false);
+        }
     };
-    
-    // Kirim payload ke parent agar diproses dispatch(updateMajor)
-    onSave(payload); 
-};
 
     return (
         <div className="p-6">
