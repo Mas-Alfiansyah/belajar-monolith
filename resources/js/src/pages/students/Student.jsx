@@ -59,7 +59,8 @@ const Students = () => {
         },
         {
             name: 'Actions',
-            right: true,
+            // use string to avoid styled-components forwarding a boolean to DOM
+            right: 'true',
             minWidth: '100px',
             cell: (row) => (
                 <div className="flex items-center gap-2">

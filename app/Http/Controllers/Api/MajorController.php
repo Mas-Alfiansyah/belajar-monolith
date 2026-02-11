@@ -58,7 +58,11 @@ class MajorController extends Controller
 
         $major->update($request->all());
 
-        return response()->json(['status' => 'success', 'message' => 'Data updated']);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Data updated',
+            'data' => $major
+        ]);
     }
 
     public function destroy($id)

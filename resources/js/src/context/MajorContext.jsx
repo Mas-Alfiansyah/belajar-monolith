@@ -26,9 +26,9 @@ export const MajorProvider = ({ children }) => {
         setMajors((prev) => [newMajor, ...prev]);
     };
 
-    useEffect(() => {
-        fetchMajors();
-    }, []);
+    // useEffect(() => {
+    //     fetchMajors();
+    // }, []);
 
     const deleteMajor = async (id) => {
         try {

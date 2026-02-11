@@ -9,25 +9,14 @@ const AddMajor = ({ onClose, onSave }) => {
     const [status, setStatus] = useState('active');
     const [loading, setLoading] = useState(false);
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        setLoading(true);
-
-        const payload = { major_name: name, major_code: code, description, status };
-
-        try {
-            await api.post('/majors', payload);
-            toast.success('Jurusan berhasil ditambahkan!');
-            onSave?.();
-            onClose?.();
-
-        } catch (error) {
-            const msg = error.response?.data?.message || 'Gagal menyimpan data';
-            toast.error(msg);
-            console.error(error);
-        } finally {
-            setLoading(false);
-        }
+        onSave({
+            major_name: name,
+            major_code: code,
+            description: description,
+            status: status
+        });
     };
 
     return (
